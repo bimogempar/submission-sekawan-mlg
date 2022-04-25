@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
     // Admin
     Route::middleware('admin')->group(function () {
         Route::get('/admin/dashboard', [DashboardController::class, 'indexAdmin'])->name('indexAdmin');
+        Route::post('/user/create/request-rent', [RentController::class, 'storeRent'])->name('storeRent');
     });
 
     // Penyetuju

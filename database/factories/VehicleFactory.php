@@ -14,7 +14,6 @@ class VehicleFactory extends Factory
     public function definition()
     {
         return [
-            'type' => $this->faker->randomElement(['MPV', 'SUV', 'Sedan', 'Pickup', 'Truck']),
             'merk' => $this->faker->randomElement(['Toyota', 'Honda', 'Suzuki', 'Daihatsu', 'Mitsubishi']),
             'fuel' => $this->faker->randomElement(['Solar', 'Bensin', 'Diesel', 'LPG']),
             'maintenance' => $this->faker->dateTimeBetween('-1 years', '+1 years'),

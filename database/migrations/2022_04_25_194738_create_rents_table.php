@@ -16,10 +16,11 @@ class CreateRentsTable extends Migration
         Schema::create('rents', function (Blueprint $table) {
             $table->id();
             $table->foreignId('vehicle_id')->constrained();
+            $table->integer('fuel');
             $table->date('rent_date');
             $table->string('driver');
             $table->string('approval');
-            $table->string('status');
+            $table->string('status')->default(0);
             $table->timestamps();
         });
     }
