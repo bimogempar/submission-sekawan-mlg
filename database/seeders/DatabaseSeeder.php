@@ -17,12 +17,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserTableSeeder::class);
         $this->call(VehicleSeeder::class);
-
-        $user = User::all();
-        Vehicle::all()->each(function ($vehicle) use ($user) {
-            $vehicle->user()->attach(
-                $user->except(1, 2, 3)->random(1, 3)->pluck('id')->toArray()
-            );
-        });
+        $this->call(RentSeeder::class);
+        // Many to many
+        // $user = User::all();
+        // Vehicle::all()->each(function ($vehicle) use ($user) {
+        //     $vehicle->user()->attach(
+        //         $user->except(1, 2, 3)->random(1, 3)->pluck('id')->toArray()
+        //     );
+        // });
     }
 }

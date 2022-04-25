@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserVehicleTable extends Migration
+class CreateRentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateUserVehicleTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_vehicle', function (Blueprint $table) {
+        Schema::create('rents', function (Blueprint $table) {
             $table->id();
-            $table->date('rent_date');
-            $table->foreignId('user_id')->constrained();
             $table->foreignId('vehicle_id')->constrained();
+            $table->date('rent_date');
+            $table->string('driver');
+            $table->string('approval');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateUserVehicleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_vehicle');
+        Schema::dropIfExists('rents');
     }
 }

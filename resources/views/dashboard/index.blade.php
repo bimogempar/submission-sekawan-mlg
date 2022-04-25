@@ -56,8 +56,43 @@
 
     <div class="row mt-4">
         <div class="col-md-12">
-            <h1>All Vehicles</h1>
+            <h1>Rent Vehicle</h1>
             <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col">Merk</th>
+                        <th scope="col">Fuel Consumtion</th>
+                        <th scope="col">Owner</th>
+                        <th scope="col">Driver</th>
+                        <th scope="col">Approval</th>
+                        <th scope="col">History Used</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($rents as $rent)
+                        <tr>
+                            <td>{{ $rent->vehicle->type }}</td>
+                            <td>{{ $rent->vehicle->merk }}</td>
+                            <td>{{ $rent->vehicle->fuel }}</td>
+                            <td>{{ $rent->vehicle->owner }}</td>
+                            <td>{{ $rent->driver()->first()->name }}</td>
+                            <td>{{ $rent->approval()->first()->name }}</td>
+                            <td>{{ $rent->vehicle->history_used }}</td>
+                            <td>{{ $rent->status == 0 ? 'Pending' : 'Approved' }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <table class="table">
+                <h1>All Vehicles</h1>
                 <thead>
                     <tr>
                         <th scope="col">Type</th>

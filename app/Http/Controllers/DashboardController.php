@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rent;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,10 @@ class DashboardController extends Controller
     {
         $vehicles = Vehicle::get();
 
+        $rents = Rent::with('vehicle', 'driver', 'approval')->get();
+
         $data = 'Dashboard Admin';
-        return view('dashboard.index', compact('data', 'vehicles'));
+        return view('dashboard.index', compact('data', 'vehicles', 'rents'));
     }
 
     public function indexApproval()
