@@ -25,9 +25,14 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
+    // User
+    Route::middleware('user')->group(function () {
+        Route::get('/user/dashboard', [DashboardController::class, 'indexUser'])->name('indexUser');
+    });
+
     // Admin
     Route::middleware('admin')->group(function () {
-        Route::get('/admin/dashboard', [DashboardController::class, 'indexAdmin'])->name('indexAdmin')->middleware('admin');
+        Route::get('/admin/dashboard', [DashboardController::class, 'indexAdmin'])->name('indexAdmin');
     });
 
     // Penyetuju
