@@ -21,7 +21,7 @@ class VehicleFactory extends Factory
             'history_used' => $this->faker->dateTimeBetween('-1 years', '+1 years'),
             'owner' => $this->faker->randomElement(['PT. ABC', 'PT. DEF', 'PT. GHI', 'PT. JKL', 'PT. MNO']),
             // 'driver' => $this->faker->randomElement(['John Doe', 'Jane Doe', 'Jack Doe', 'Jill Doe', 'Joe Doe']),
-            'status' => $this->faker->randomElement([0, 1]),
+            // 'status' => $this->faker->randomElement([0, 1]),
         ];
     }
 }

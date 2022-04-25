@@ -5,7 +5,7 @@
 @section('content')
     <form action={{ route('logout') }} method="post">
         @csrf
-        <button class="btn btn-danger" type="submit">Logout</button>
+        <button class="btn btn-danger mb-4" type="submit">Logout</button>
     </form>
 
     <h1>This is {{ $data }}</h1>
@@ -54,9 +54,9 @@
         </div>
     @endif
 
-
     <div class="row mt-4">
         <div class="col-md-12">
+            <h1>All Vehicles</h1>
             <table class="table">
                 <thead>
                     <tr>
@@ -66,8 +66,6 @@
                         <th scope="col">Maintenance</th>
                         <th scope="col">History Used</th>
                         <th scope="col">Owner</th>
-                        <th scope="col">Driver</th>
-                        <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>

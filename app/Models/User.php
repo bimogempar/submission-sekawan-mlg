@@ -42,5 +42,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // 1 = user/driver, 2 = admin, 3 = penyetuju
+    public function vehicles()
+    {
+        return $this->belongsToMany(Vehicle::class);
+    }
 }

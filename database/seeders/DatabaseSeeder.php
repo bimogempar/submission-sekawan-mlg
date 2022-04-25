@@ -16,6 +16,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UserTableSeeder::class);
-        Vehicle::factory(10)->create();
+        $this->call(VehicleSeeder::class);
+
+        $user = User::all();
+        Vehicle::all()->each(function ($vehicle) use ($user) {
+            $vehicle->user()->attach(
+                $user->except(1, 2, 3)->random(1, 3)->pluck('id')->toArray()
+            );
+        });
     }
 }
