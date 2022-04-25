@@ -41,4 +41,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // 1 = user/driver, 2 = admin, 3 = penyetuju
 }
