@@ -26,7 +26,12 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
     // Admin
-    Route::get('/admin/dashboard', [DashboardController::class, 'indexAdmin'])->name('indexAdmin');
+    Route::middleware('admin')->group(function () {
+        Route::get('/admin/dashboard', [DashboardController::class, 'indexAdmin'])->name('indexAdmin')->middleware('admin');
+    });
+
     // Penyetuju
-    Route::get('/approval/dashboard', [DashboardController::class, 'indexApproval'])->name('indexApproval');
+    Route::middleware('approval')->group(function () {
+        Route::get('/approval/dashboard', [DashboardController::class, 'indexApproval'])->name('indexApproval');
+    });
 });

@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class UserRole
+class Approval
 {
     /**
      * Handle an incoming request.
@@ -16,6 +17,19 @@ class UserRole
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        if (auth()->user()->role == 3) {
+            return $next($request);
+        }
+
+        $destinations = [
+            1 => 'indexUser',
+            2 => 'indexAdmin',
+        ];
+
+        return redirect(route($destinations[auth()->user()->role]));
     }
 }
