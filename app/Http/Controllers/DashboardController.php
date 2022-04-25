@@ -8,7 +8,13 @@ class DashboardController extends Controller
 {
     public function indexAdmin()
     {
-        $admin = 'Dashboard Admin';
-        return view('dashboard.index', compact('admin'));
+        $data = 'Dashboard Admin';
+        return view('dashboard.index', compact('data'));
+    }
+
+    public function indexApproval()
+    {
+        $data = 'Dashboard Penyetuju';
+        return view('dashboard.index', compact('data'));
     }
 }

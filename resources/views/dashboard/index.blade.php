@@ -1,9 +1,14 @@
 @extends('layouts/app')
 
-@section('title', $admin)
+@section('title', $data)
 
 @section('content')
-    <h1>This is {{ $admin }}</h1>
+    <form action={{ route('logout') }} method="post">
+        @csrf
+        <button class="btn btn-danger" type="submit">Logout</button>
+    </form>
+
+    <h1>This is {{ $data }}</h1>
 
     <h1 class="mt-5">Add Vehicle</h1>
     <div class="row">

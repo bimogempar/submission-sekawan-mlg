@@ -22,6 +22,11 @@ Route::get('/', function () {
 // Auth
 Route::get('/login', [AuthController::class, 'loginPage'])->name('loginPage');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Admin
-Route::get('/admin/dashboard', [DashboardController::class, 'indexAdmin'])->name('indexAdmin');
+Route::middleware(['auth'])->group(function () {
+    // Admin
+    Route::get('/admin/dashboard', [DashboardController::class, 'indexAdmin'])->name('indexAdmin');
+    // Penyetuju
+    Route::get('/approval/dashboard', [DashboardController::class, 'indexApproval'])->name('indexApproval');
+});
