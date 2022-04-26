@@ -36,6 +36,6 @@ class RentController extends Controller
         $approval = User::where('role', 3)->get();
         $driver = User::where('role', 1)->get();
         $rents = Rent::with('vehicle', 'driver', 'approval')->get();
-        return view('dashboard.reloadrent', compact('rents'));
+        return view('dashboard.partials.tablerent', compact('rents'));
     }
 }

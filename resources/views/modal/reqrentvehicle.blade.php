@@ -54,7 +54,6 @@
                 "driver": driver,
                 "approval": approval
             },
-            dataType: 'json',
             success: function(data) {
                 console.log('close')
                 $('.btn-close').click();
