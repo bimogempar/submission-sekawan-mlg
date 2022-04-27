@@ -1,4 +1,4 @@
-[1] CRUD
+[1] CRUD using AJAX 
 [2] Eloquent Relationship
 [3] ORM
 [4] Middleware for user role
