@@ -39,10 +39,16 @@
                 "history_used": history_used,
                 "owner": owner
             },
-            dataType: 'json',
             success: function(data) {
                 $('.btn-close').click();
+                reloadVehicle()
             }
         });
+    }
+
+    function reloadVehicle() {
+        $.get('{{ route('reloadVehicle') }}', function(data) {
+            $('#tableVehicle').html(data)
+        })
     }
 </script>

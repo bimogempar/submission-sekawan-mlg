@@ -28,6 +28,6 @@ class VehicleController extends Controller
     public function reloadVehicle()
     {
         $vehicles = Vehicle::get();
-        return view('dashboard.reloadvehicle', compact('vehicles'));
+        return view('dashboard.partials.tablevehicle', compact('vehicles'));
     }
 }

@@ -55,7 +55,6 @@
                 "approval": approval
             },
             success: function(data) {
-                console.log('close')
                 $('.btn-close').click();
                 reloadRent();
             }

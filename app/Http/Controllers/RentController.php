@@ -16,7 +16,7 @@ class RentController extends Controller
             'fuel' => $request->fuel,
             'vehicle_id' => $request->vehicle_id,
             'driver' => $request->driver,
-            'approval' => $request->driver,
+            'approval' => $request->approval,
             'rent_date' => $request->rent_date,
         ]);
 
@@ -37,5 +37,16 @@ class RentController extends Controller
         $driver = User::where('role', 1)->get();
         $rents = Rent::with('vehicle', 'driver', 'approval')->get();
         return view('dashboard.partials.tablerent', compact('rents'));
+    }
+
+    public function approvalRent(Request $request, $id)
+    {
+        // update
+        $rent = Rent::find($request->id);
+        $rent->update([
+            'status' => $request->status,
+        ]);
+
+        return response('Success', 200);
     }
 }

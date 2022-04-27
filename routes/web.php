@@ -35,20 +35,25 @@ Route::middleware(['auth'])->group(function () {
     // Admin
     Route::middleware('admin')->group(function () {
         Route::get('/admin/dashboard', [DashboardController::class, 'indexAdmin'])->name('indexAdmin');
+
+        // Store
         Route::post('/user/create/request-rent', [RentController::class, 'storeRent'])->name('storeRent');
         Route::post('/user/create/new-vehicle', [VehicleController::class, 'storeVehicle'])->name('storeVehicle');
 
         // Modal
         Route::get('/admin/create/request-rent', [RentController::class, 'modalCreateRent'])->name('modalCreateRent');
         Route::get('/admin/create/vehicle', [VehicleController::class, 'modalCreateVehicle'])->name('modalCreateVehicle');
-
-        // Reload
-        Route::get('/admin/reload/rent', [RentController::class, 'reloadRent'])->name('reloadRent');
-        Route::get('/admin/reload/vehicle', [VehicleController::class, 'reloadVehicle'])->name('reloadVehicle');
     });
 
     // Penyetuju
     Route::middleware('approval')->group(function () {
         Route::get('/approval/dashboard', [DashboardController::class, 'indexApproval'])->name('indexApproval');
+
+        // Approval
+        Route::patch('/admin/approval/rent/{id}', [RentController::class, 'approvalRent'])->name('approvalRent');
     });
+
+    // Reload
+    Route::get('/admin/reload/rent', [RentController::class, 'reloadRent'])->name('reloadRent');
+    Route::get('/admin/reload/vehicle', [VehicleController::class, 'reloadVehicle'])->name('reloadVehicle');
 });
