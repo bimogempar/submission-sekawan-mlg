@@ -41,7 +41,7 @@
                         @if ($rent->status == 0)
                             <td>
                                 <div class="d-flex gap-3">
-                                    @if (auth()->user()->role == 3)
+                                    @if (auth()->user()->role == 3 && auth()->user()->id == $rent->approval()->first()->id)
                                         <button onclick="reject({{ $rent->id }})"
                                             class="btn btn-danger">Reject</button>
                                         <button onclick="approve({{ $rent->id }})"
