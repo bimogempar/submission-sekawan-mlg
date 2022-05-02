@@ -22,12 +22,11 @@
                         <td>{{ $vehicle->maintenance }}</td>
                         <td>{{ $vehicle->history_used }}</td>
                         <td>{{ $vehicle->owner }}</td>
-                        <td>{{ $vehicle->driver }}</td>
-                        <td>{{ $vehicle->status }}</td>
                         <td>
                             @if (auth()->user()->role == 2)
                                 <div class="d-flex gap-3">
-                                    <button onclick="edit({{ $vehicle->id }})" class="btn btn-warning">Edit</button>
+                                    <button onclick="edit({{ $vehicle->id }})"
+                                        class="btn btn-info text-white">Edit</button>
                                     <button onclick="destroy({{ $vehicle->id }})"
                                         class="btn btn-danger">Delete</button>
                                 </div>

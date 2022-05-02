@@ -13,7 +13,7 @@
                     <th scope="col">Approval</th>
                     <th scope="col">History Used</th>
                     <th scope="col">Status</th>
-                    @if (auth()->user()->role == 3)
+                    @if (auth()->user()->role == 2 || auth()->user()->role == 3)
                         <th scope="col">Action</th>
                     @endif
                 </tr>
@@ -29,27 +29,31 @@
                         <td>{{ $rent->driver()->first()->name }}</td>
                         <td>{{ $rent->approval()->first()->name }}</td>
                         <td>{{ $rent->vehicle->history_used }}</td>
-                        {{-- <td>{{ $rent->status == 0 ? 'Pending' : 'Approved' }}</td> --}}
                         <td>
                             @if ($rent->status == 0)
-                                Pending
+                                <h6><span class="badge bg-warning">Pending</span></h6>
                             @elseif ($rent->status == 1)
-                                Approved
+                                <h6><span class="badge bg-success">Approved</span></h6>
                             @elseif ($rent->status == 2)
-                                Rejected
+                                <h6><span class="badge bg-danger">Rejected</span></h6>
                             @endif
                         </td>
-                        @if (auth()->user()->role == 3)
-                            @if ($rent->status == 0)
-                                <td>
-                                    <div class="d-flex gap-3">
+                        @if ($rent->status == 0)
+                            <td>
+                                <div class="d-flex gap-3">
+                                    @if (auth()->user()->role == 3)
                                         <button onclick="reject({{ $rent->id }})"
                                             class="btn btn-danger">Reject</button>
                                         <button onclick="approve({{ $rent->id }})"
                                             class="btn btn-success">Approve</button>
-                                    </div>
-                                </td>
-                            @endif
+                                        <button onclick="destroyRent({{ $rent->id }})"
+                                            class="btn btn-secondary text-white">Delete</button>
+                                    @elseif(auth()->user()->role == 2)
+                                        <button onclick="destroyRent({{ $rent->id }})"
+                                            class="btn btn-secondary text-white">Delete</button>
+                                    @endif
+                                </div>
+                            </td>
                         @endif
                     </tr>
                 @endforeach
@@ -59,6 +63,11 @@
 </div>
 
 <script>
+    function destroyRent(params) {
+        console.log("deleted id " +
+            params)
+    }
+
     function approve(id) {
         const idRent = id;
         const url = '{{ route('approvalRent', ':id') }}';
