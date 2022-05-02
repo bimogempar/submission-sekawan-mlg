@@ -54,4 +54,8 @@
             $('#deleteButton').hide();
         });
     }
+
+    function destroy(id) {
+        const idVehicle = id;
+    }
 </script>

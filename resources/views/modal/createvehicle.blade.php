@@ -41,6 +41,11 @@
             },
             success: function(data) {
                 $('.btn-close').click();
+                Swal.fire(
+                    'Success',
+                    'New vehicle has been added',
+                    'success'
+                )
                 reloadVehicle()
             }
         });

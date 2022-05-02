@@ -41,6 +41,11 @@
             },
             success: function(data) {
                 $('.btn-close').click();
+                Swal.fire(
+                    'Success',
+                    'Vehicle has been updated',
+                    'success'
+                )
                 reloadVehicle();
             }
         });

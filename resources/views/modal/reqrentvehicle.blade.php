@@ -56,6 +56,11 @@
             },
             success: function(data) {
                 $('.btn-close').click();
+                Swal.fire(
+                    'Success',
+                    'Success to add new rent',
+                    'success'
+                )
                 reloadRent();
             }
         });
