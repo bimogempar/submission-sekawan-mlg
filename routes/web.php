@@ -27,33 +27,37 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
-    // User
+    // USER
     Route::middleware('user')->group(function () {
         Route::get('/user/dashboard', [DashboardController::class, 'indexUser'])->name('indexUser');
     });
 
-    // Admin
+    // ADMIN
     Route::middleware('admin')->group(function () {
         Route::get('/admin/dashboard', [DashboardController::class, 'indexAdmin'])->name('indexAdmin');
 
         // Store
-        Route::post('/user/create/request-rent', [RentController::class, 'storeRent'])->name('storeRent');
-        Route::post('/user/create/new-vehicle', [VehicleController::class, 'storeVehicle'])->name('storeVehicle');
+        Route::post('/admin/create/request-rent', [RentController::class, 'storeRent'])->name('storeRent');
+        Route::post('/admin/create/new-vehicle', [VehicleController::class, 'storeVehicle'])->name('storeVehicle');
+
+        // Update
+        Route::patch('/admin/update/vehicle/{id}', [VehicleController::class, 'updateVehicle'])->name('updateVehicle');
 
         // Modal
         Route::get('/admin/create/request-rent', [RentController::class, 'modalCreateRent'])->name('modalCreateRent');
         Route::get('/admin/create/vehicle', [VehicleController::class, 'modalCreateVehicle'])->name('modalCreateVehicle');
+        Route::get('/admin/edit/vehicle/{id}', [VehicleController::class, 'modalEditVehicle'])->name('modalEditVehicle');
     });
 
-    // Penyetuju
+    // APPROVAL
     Route::middleware('approval')->group(function () {
         Route::get('/approval/dashboard', [DashboardController::class, 'indexApproval'])->name('indexApproval');
 
         // Approval
-        Route::patch('/admin/approval/rent/{id}', [RentController::class, 'approvalRent'])->name('approvalRent');
+        Route::patch('/approval/rent/{id}', [RentController::class, 'approvalRent'])->name('approvalRent');
     });
 
-    // Reload
+    // RELOAD COMPONENTS
     Route::get('/admin/reload/rent', [RentController::class, 'reloadRent'])->name('reloadRent');
     Route::get('/admin/reload/vehicle', [VehicleController::class, 'reloadVehicle'])->name('reloadVehicle');
 });

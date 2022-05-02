@@ -30,4 +30,23 @@ class VehicleController extends Controller
         $vehicles = Vehicle::get();
         return view('dashboard.partials.tablevehicle', compact('vehicles'));
     }
+
+    public function modalEditVehicle($id)
+    {
+        $vehicle = Vehicle::findorfail($id);
+        return view('modal.editvehicle', compact('vehicle'));
+    }
+
+    public function updateVehicle(Request $request, $id)
+    {
+        $vehicle = Vehicle::findorfail($id);
+        $vehicle->update([
+            'merk' => $request->merk,
+            'fuel' => $request->fuel,
+            'maintenance' => $request->maintenance,
+            'history_used' => $request->history_used,
+            'owner' => $request->owner,
+        ]);
+        return $vehicle;
+    }
 }
