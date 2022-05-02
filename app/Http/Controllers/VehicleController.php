@@ -49,4 +49,11 @@ class VehicleController extends Controller
         ]);
         return $vehicle;
     }
+
+    public function destroyVehicle($id)
+    {
+        $vehicle = Vehicle::findorfail($id);
+        return $vehicle->delete();
+        // return "Success";
+    }
 }

@@ -43,6 +43,9 @@ Route::middleware(['auth'])->group(function () {
         // Update
         Route::patch('/admin/update/vehicle/{id}', [VehicleController::class, 'updateVehicle'])->name('updateVehicle');
 
+        // Destroy
+        Route::delete('/admin/destroy/vehicle/{id}', [VehicleController::class, 'destroyVehicle'])->name('destroyVehicle');
+
         // Modal
         Route::get('/admin/create/request-rent', [RentController::class, 'modalCreateRent'])->name('modalCreateRent');
         Route::get('/admin/create/vehicle', [VehicleController::class, 'modalCreateVehicle'])->name('modalCreateVehicle');

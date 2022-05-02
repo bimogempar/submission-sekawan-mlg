@@ -57,5 +57,44 @@
 
     function destroy(id) {
         const idVehicle = id;
+        Swal.fire({
+            title: 'Are you sure to delete this vehicle?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const url = '{{ route('destroyVehicle', ':id') }}';
+                const newUrl = url.replace(':id', idVehicle);
+
+                $.ajax({
+                    url: newUrl,
+                    type: 'DELETE',
+                    data: {
+                        '_token': '{{ csrf_token() }}'
+                    },
+                    success: function(data) {
+                        $('.btn-close').click();
+                        Swal.fire(
+                            'Deleted!',
+                            'Vehicle has been deleted.',
+                            'success'
+                        )
+                        reloadTable()
+                    }
+                });
+            }
+        })
+    }
+
+    function reloadTable() {
+        $.get('{{ route('reloadRent') }}', function(data) {
+            $('#tableRent').html(data)
+        })
+        $.get('{{ route('reloadVehicle') }}', function(data) {
+            $('#tableVehicle').html(data)
+        })
     }
 </script>
